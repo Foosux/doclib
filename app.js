@@ -5,16 +5,18 @@ var path = require('path')
 var index = require('./routes/index')
 var list = require('./routes/list')
 
-app.set('views','./views/pages')
-// app.set('views', path.join(__dirname, 'views/pages'))
+// app.set('views','./views/pages')
+app.set('views', path.join(__dirname, 'views/pages'))
 app.set('view engine','jade')
 app.set('port', process.env.PORT || 3000)
+// 静态资源托管
+// app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 // 路由系统
 app.use('/', index)
 app.use('/list', list)
-
 
 
 
