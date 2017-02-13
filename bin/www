@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var app = require('../app')
+
+app.set('port', process.env.PORT || 3000)
+
+app.listen(app.get('port'),"127.0.0.1",function(){
+  console.log('DocLib start on port %d',app.get('port'))
+})

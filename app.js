@@ -1,25 +1,24 @@
 var express = require('express')
 var app = express()
 var path = require('path')
+var db = require('./conf/db')
+
 // 路由文件
 var index = require('./routes/index')
 var list = require('./routes/list')
-
-// app.set('views','./views/pages')
-app.set('views', path.join(__dirname, 'views/pages'))
-app.set('view engine','jade')
-app.set('port', process.env.PORT || 3000)
-// 静态资源托管
-// app.use(express.static('public'))
-app.use(express.static(path.join(__dirname, 'public')))
-
-
 // 路由系统
 app.use('/', index)
 app.use('/list', list)
 
+// 设置静态文件路径、静态资源托管、模板引擎
+app.set('views', path.join(__dirname, 'views/pages'))
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('view engine','jade')
 
+// 路由
+var index = require('./routes/index')
+var list = require('./routes/list')
+app.use('/', index)
+app.use('/list', list)
 
-app.listen(app.get('port'),"127.0.0.1",function(){
-  console.log('Docment Library start on port %d',app.get('port'))
-})
+module.exports = app
