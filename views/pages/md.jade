@@ -3,5 +3,8 @@ extend ../layout
 block content
   .G-layout-box
   aside 导航栏
-  section.G-box-col#inner
+  section.G-box-col.markdown-body
     !{marked(htmlStr)}  
+  script(src='http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js')
+  script.
+    hljs.initHighlightingOnLoad()

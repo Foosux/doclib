@@ -6,6 +6,11 @@ var logger = require('morgan')
 require('./db/db')
 
 app.locals.marked = require('marked')
+// app.locals.marked.setOptions({
+//   highlight: function (code) {
+//     return hljs.highlightAuto(code).value;
+//   }
+// })
 
 // 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'views/pages'))

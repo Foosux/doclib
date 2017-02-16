@@ -48,6 +48,7 @@ Markdown 语法:
 
 输出 HTML 为：
 
+```xml
 	<h1>A First Level Header</h1>
 	<h2>A Second Level Header</h2>
 	<p>Now is the time for all good men to come to
@@ -61,6 +62,7 @@ Markdown 语法:
 	<p>This is the second paragraph in the blockquote.</p>
 	<h2>This is an H2 in a blockquote</h2>
 	</blockquote>
+```
 
 ### 修辞和强调 ###
 
