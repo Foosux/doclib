@@ -4,5 +4,7 @@ html
     title #{title}
     include ./includes/head
   body
-    block content
+    include ./includes/header
+    .contWrap.G-layout-box
+      block content
     include ./includes/footer

@@ -25,11 +25,9 @@ app.use('/list', list)
 
 // 404页
 app.use(function(req, res, next) {
-  // var err = new Error('Not Found!!!')
-  // err.status = 404
-  // next(err)
   res.redirect('/404')
 })
+
 // 全局error
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
