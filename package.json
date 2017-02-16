@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/Foosux/doclib#readme",
   "dependencies": {
+    "debug": "^2.6.1",
     "express": "^4.14.1",
     "jade": "^1.11.0",
     "mongoose": "^4.8.1",
+    "morgan": "^1.8.1",
     "stylus": "^0.54.5"
   }
 }

@@ -26,17 +26,24 @@ var DocSchema = new mongoose.Schema({
   }
 })
 
-// DocSchema.methods.speak = function () {
-//   var greeting = this.author
-//     ? "speak author is: " + this.author
-//     : "i do not have a author"
-//   console.log(greeting)
+// 实例方法
+// DocSchema.methods = {
+//   speak : function () {
+//     var greeting = this.author
+//       ? "speak author is: " + this.author
+//       : "i do not have a author"
+//     console.log(greeting)
+//   }
 // }
 
-
-// DocSchema.statics.findDoc = function (cb) {
-//   this.find({},cb)
-// }
+// model方法
+DocSchema.statics = {
+  fetch: function (cb) {
+    return this
+      .find()
+      .exec(cb)
+  }
+}
 //
 // DocSchema.virtual('name.full').get(function () {
 //   return this.name.first + this.name.last

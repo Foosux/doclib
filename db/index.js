@@ -7,28 +7,16 @@ var docA = new Doc({
   // name: {
   //   full : 'zhu min'
   // },
-  noRegData: 'am'
+  // noRegData: 'am'
 })
 
-
-// docA.meta.createAt.setMonth(5)
-// docA.save(function(err,docA){
-//   if (err) return console.error(err)
-// })
-
-// console.log(docA.id,docA)
-
-// docA.save(function(err,docA){
-  // if (err) return console.error(err)
-  // docA.speak()
-  // console.log(docA)
-// })
-
-// Doc.findDoc(function(err,allDoc){
-//   if (err) return console.error(err)
-//   console.log(allDoc.length)
+// Doc.fetch(function(err,resDoc) {
+//   if(err) {
+//     console.log(err)
+//   }
+//   console.log(resDoc)
 // })
 
 
-
+// module.exports = Doc
 module.exports = docA

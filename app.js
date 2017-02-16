@@ -1,19 +1,19 @@
 var express = require('express')
 var app = express()
 var path = require('path')
+var logger = require('morgan')
 require('./db/db')
 
-// 路由文件
-var index = require('./routes/index')
-var list = require('./routes/list')
-// 路由系统
-app.use('/', index)
-app.use('/list', list)
-
-// 设置静态文件路径、静态资源托管、模板引擎
+// 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'views/pages'))
-app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine','jade')
+app.use(logger('dev'))
+app.use(require('stylus').middleware({
+  src: path.join(__dirname, 'public/stylesheets'),
+  dest: path.join(__dirname, 'public/css')
+}))
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 // 路由
 var index = require('./routes/index')
