@@ -18,14 +18,17 @@ app.use(express.static(path.join(__dirname, 'public')))
 // 路由
 var index = require('./routes/index')
 var list = require('./routes/list')
+var page404 = require('./routes/404')
 app.use('/', index)
+app.use('/404', page404)
 app.use('/list', list)
 
 // 404页
 app.use(function(req, res, next) {
-  var err = new Error('Not Found!!!')
-  err.status = 404
-  next(err)
+  // var err = new Error('Not Found!!!')
+  // err.status = 404
+  // next(err)
+  res.redirect('/404')
 })
 // 全局error
 app.use(function(err, req, res, next) {
