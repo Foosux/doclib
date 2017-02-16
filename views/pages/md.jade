@@ -4,5 +4,4 @@ block content
   .G-layout-box
   aside 导航栏
   section.G-box-col#inner
-  script(type='text/javascript').
-    document.getElementById('inner').innerHTML = '!{htmlStr}'
+    !{marked(htmlStr)}  
