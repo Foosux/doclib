@@ -38,7 +38,9 @@ app.use('/list', list)
 // 解析markdown文件
 app.get('/md/:name',function(req, res) {
   var fileName = req.params.name + '.md'
-  fs.readFile(path.join(__dirname,'/docs/',fileName), 'utf8', function(err, str) {
+  var fileQuery = req.query.path
+  console.log(fileName,fileQuery)
+  fs.readFile(path.join(__dirname,'docs',fileQuery,fileName), 'utf8', function(err, str) {
     fn(null, res, str)
   })
   function fn (err, res, str) {
@@ -48,9 +50,9 @@ app.get('/md/:name',function(req, res) {
   }
 })
 // 404页
-app.use(function(req, res, next) {
-  res.redirect('/404')
-})
+// app.use(function(req, res, next) {
+//   res.redirect('/404')
+// })
 
 // 全局error
 app.use(function(err, req, res, next) {

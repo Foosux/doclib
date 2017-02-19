@@ -148,6 +148,11 @@ header {
 }
 aside {
   min-width: 300px;
+  background: #fff;
+}
+aside a {
+  display: block;
+  font: 14px/50px '';
 }
 .markdown-body {
   overflow: hidden;
