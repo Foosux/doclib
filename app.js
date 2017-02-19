@@ -38,7 +38,7 @@ app.use('/list', list)
 // 解析markdown文件
 app.get('/md/:name',function(req, res) {
   var fileName = req.params.name + '.md'
-  var fileQuery = req.query.path
+  var fileQuery = req.query.path || '.'
   console.log(fileName,fileQuery)
   fs.readFile(path.join(__dirname,'docs',fileQuery,fileName), 'utf8', function(err, str) {
     fn(null, res, str)
