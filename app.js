@@ -11,6 +11,7 @@ app.locals.marked = require('marked')
 //     return hljs.highlightAuto(code).value;
 //   }
 // })
+app.locals.test = 1
 
 // 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'views/pages'))
@@ -29,26 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // 路由
 var index = require('./routes/index')
-var list = require('./routes/list')
 var page404 = require('./routes/404')
+var markdown = require('./routes/markdown')
+var list = require('./routes/list')
 app.use('/', index)
 app.use('/404', page404)
+app.use('/md', markdown)
 app.use('/list', list)
 
-// 解析markdown文件
-app.get('/md/:name',function(req, res) {
-  var fileName = req.params.name + '.md'
-  var fileQuery = req.query.path || '.'
-  console.log(fileName,fileQuery)
-  fs.readFile(path.join(__dirname,'docs',fileQuery,fileName), 'utf8', function(err, str) {
-    fn(null, res, str)
-  })
-  function fn (err, res, str) {
-    res.render('md',{
-      htmlStr: str
-    })
-  }
-})
 // 404页
 // app.use(function(req, res, next) {
 //   res.redirect('/404')
