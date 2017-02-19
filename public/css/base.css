@@ -116,6 +116,10 @@ body.WB_xpT {
 :focus {
   outline-color: #eb7350;
 }
+a {
+  text-decoration: none;
+  color: #00ae66;
+}
 .G-layout-box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -149,10 +153,28 @@ header {
 aside {
   min-width: 300px;
   background: #fff;
+  padding-left: 20px;
+}
+aside ol>ol {
+  margin-left: 20px;
 }
 aside a {
   display: block;
+  font: 12px/40px '';
+}
+aside dt {
   font: 14px/50px '';
+  position: relative;
+}
+aside dt:after {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 4px;
+  border-radius: 2px;
+  background: #00ae66;
+  left: -20px;
+  top: 15px;
 }
 .markdown-body {
   overflow: hidden;
