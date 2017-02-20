@@ -3,29 +3,25 @@ var router = express.Router()
 
 router.route('/')
   .get(function(req, res, next) {
-    res.render('404',{
-
+    res.render('adminHome',{
     })
   })
 
 router.route('/home')
   .get(function(req, res, next) {
     res.render('adminHome',{
-
     })
   })
 
 router.route('/new')
   .get(function(req, res, next) {
     res.render('adminNew',{
-
     })
   })
 
-router.route('/addUser')
+router.route('/user')
   .get(function(req, res, next) {
-    res.render('adminAddUser',{
-
+    res.render('adminUserManage',{
     })
   })
 

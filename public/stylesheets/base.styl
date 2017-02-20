@@ -18,12 +18,27 @@ body{font:12px/1.3 'Arial','Microsoft YaHei'; _font-family:simsun; overflow-x:hi
 body.WB_macT{font-family:'Helvetica','STHeiti';}
 body.WB_xpT{font-family:'Arial','Helvetica','sans-serif';}
 ::selection{background:#eb7350;color:#fff;}
-:focus{ outline-color:#eb7350;}
+// :focus{ outline-color:#eb7350;}
 
 a {
   text-decoration: none;
   color: #00ae66
 }
+input,textarea{
+  box-sizing border-box
+  padding 4px 10px
+  width 100%
+  font 12px/1.5 ''
+  border 1px solid #e5e5e5
+}
+textarea:focus,
+input:focus {
+  outline none
+  border 1px solid #f05023
+}
+form
+  button:last-child:not(:first-child)
+    margin-left 15px
 // flex布局
 .G-layout-box {
   display: -webkit-box;
@@ -104,8 +119,23 @@ aside.mdNav
       background #252525
       line-height 50px
       color #9e9e9e
-    main
+    .main
       padding 34px
+      height 100%
+      box-sizing border-box
+      textarea.ta
+        height 50px
+      .adminNew
+        height 100%
+        .formArea
+          flex-direction column
+          textarea.mdta
+            height 100%
+            font-size 14px
+        .viewArea
+          padding-left 15px
+          border-left 1px dashed #e5e5e5
+          margin-left 15px
 // 前台
 .contWrap
   padding 10px
@@ -122,3 +152,154 @@ aside.mdNav
   line-height 50px
   text-align center
   bottom 0
+// btns
+.G-btn-a, a.G-btn-a
+  background-color #2980b9
+  font 12px/35px ''
+  text-align center
+  min-width 50px
+  color #FFF
+  border 0
+  border-radius 5px
+  display inline-block
+  padding 0 10px
+  cursor pointer
+  &:hover
+    opacity .9
+  &:active
+    opacity 1
+  &:focus
+    outline none
+
+// G-form-list
+.G-form-list{
+    line-height:34px;
+    font-size:12px;
+    .row{
+        white-space:nowrap;
+        .tit{
+            // color:#999;
+            min-width: 5em;
+            text-align:right;
+            display:inline-block;
+            margin-right:0;
+        }
+        label{
+            min-width: auto;
+            margin-right:10px;
+        }
+        &:not(:last-child){
+            margin-bottom:10px;
+        }
+        & > div:not(:last-child){
+            margin-right:15px;
+        }
+        &.thin{
+            line-height:24px;
+        }
+        & > div.select-extend{
+            margin-right:0;
+        }
+
+    }
+    &.auto,
+    .auto{
+        .tit{
+            text-align:left;
+            min-width: auto;
+        }
+    }
+    // ￩ﾻﾘ￨ﾮﾤ￤ﾸﾺ5￤ﾸﾪ￥ﾭﾗ￧ﾬﾦ￥ﾮﾽ￥ﾺﾦ￯ﾼﾌ￧ﾨﾍ￥ﾁﾚ￦ﾉﾩ￥ﾱﾕ
+    &.t-6em,
+    .t-6em{
+        .tit{
+            min-width: 6em;
+        }
+    }
+    &.t-7em,
+    .t-7em{
+        .tit{
+            min-width: 7em;
+        }
+    }
+    &.t-8em,
+    .t-8em{
+        .tit{
+            min-width: 8em;
+        }
+    }
+    &.t-9em,
+    .t-9em{
+        .tit{
+            min-width: 9em;
+        }
+    }
+    &.t-10em,
+    .t-10em{
+        .tit{
+            min-width: 10em;
+        }
+    }
+    &.t-11em,
+    .t-11em{
+        .tit{
+            min-width: 11em;
+        }
+    }
+    .item-list{
+        flex-wrap: wrap;
+        .item{
+            min-width:23%;
+            margin-bottom:5px;
+        }
+        &.row{
+            margin-bottom:0;
+        }
+    }
+    .input[type=text]{
+        width:130px;
+    }
+    // ￦ﾉﾩ￥ﾱﾕ￥ﾷﾦ￥ﾯﾹ￩ﾽﾐ
+    .left{
+        .tit{
+            text-align: left;
+        }
+    }
+    .right{
+        .tit{
+            text-align: right;
+        }
+    }
+}
+.status{
+    position:absolute;
+    top:-38px;
+    left:50%;
+    span{
+        position:relative;
+        display: inline-block;
+        white-space: nowrap;
+        left:-50%;
+        color:#b94a48;
+        border:1px solid #c7254e;
+        background:#f9f2f4;
+        border-radius:4px;
+        font:12px/28px '';
+        padding:0 20px;
+        &:after{
+            content:'';
+            position:absolute;
+            width:8px;
+            height:8px;
+            bottom:-5px;
+            left:50%;
+            margin-left:-5px;
+            background:#ccc;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border:1px solid #c7254e;
+            background:#f9f2f4;
+            border-width:0 1px 1px 0;
+        }
+    }
+}

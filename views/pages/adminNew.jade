@@ -1,5 +1,28 @@
 extend ../adminlayout
 
 block content
-  dev new
-    
+  .adminNew.G-layout-box
+    form.formArea.G-box-col.G-layout-box.G-form-list(action='creat', method='post')
+      .row.G-layout-box
+        em 文章标题：
+        input.G-box-col(type="text", name="title", placeholder='来个标题呗 ^.^')
+      .row.G-layout-box
+        em 文章概述：
+        textarea.ta.G-box-col(name="description", placeholder='写个前言？')
+      .row
+        em 选择分类：
+        select(name="dir")
+          option(value='') 请选择
+          option(value='nodejs') nodejs
+          option(value='express') express
+      .row
+        em 添加标签：
+        span node
+      .row.G-box-col
+        textarea.mdta(name="main", placeholder='# Welcome markDown')
+      .row.G-layout-box
+        .G-box-col (note here)
+        button.G-btn-a(type='submit') 预览
+        button.G-btn-a(type='submit') 提交
+    .viewArea.G-box-col
+      dev 预览
