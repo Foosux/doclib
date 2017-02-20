@@ -5,6 +5,11 @@ var fs = require('fs')
 var logger = require('morgan')
 require('./db/db')
 
+// 全局变量
+global._GLOBAL_DATA = {
+  role: 'Foosux'
+}
+
 app.locals.marked = require('marked')
 // app.locals.marked.setOptions({
 //   highlight: function (code) {
@@ -18,12 +23,12 @@ var readFiles = require('./conf/files')
  * @type {path [string]} 生成的侧边栏信息保存在哪
  * @type {name [string]} 保存的文件名
  */
-var filesInfo = readFiles(
-  path.join(__dirname, 'docs/nodejs'),
-  path.join(__dirname, 'views/filesroot'),
-  'express'
-)
-console.log(filesInfo)
+// var filesInfo = readFiles(
+//   path.join(__dirname, 'docs/nodejs'),
+//   path.join(__dirname, 'views/filesroot'),
+//   'express'
+// )
+// console.log(filesInfo)
 
 // 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'views/pages'))
@@ -45,10 +50,12 @@ var index = require('./routes/index')
 var page404 = require('./routes/404')
 var markdown = require('./routes/markdown')
 var list = require('./routes/list')
+var admin = require('./routes/admin')
 app.use('/', index)
 app.use('/404', page404)
 app.use('/md', markdown)
 app.use('/list', list)
+app.use('/admin', admin)
 
 // 404页
 // app.use(function(req, res, next) {

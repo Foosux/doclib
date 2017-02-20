@@ -144,29 +144,23 @@ a {
   -webkit-justify-content: center;
   justify-content: center;
 }
-/* header */
-header {
-  line-height: 50px;
-  padding: 0 10px;
-  background: #73aefb;
-}
-aside {
+aside.mdNav {
   min-width: 300px;
   background: #fff;
   padding-left: 20px;
 }
-aside ol>ol {
+aside.mdNav ol>ol {
   margin-left: 20px;
 }
-aside a {
+aside.mdNav a {
   display: block;
   font: 12px/40px '';
 }
-aside dt {
+aside.mdNav dt {
   font: 14px/50px '';
   position: relative;
 }
-aside dt:after {
+aside.mdNav dt:after {
   content: '';
   position: absolute;
   height: 20px;
@@ -176,18 +170,62 @@ aside dt:after {
   left: -20px;
   top: 15px;
 }
+.adminWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.adminWrap aside.adminNav {
+  min-width: 150px;
+  height: 100%;
+  background: #252525;
+  color: #9e9e9e;
+}
+.adminWrap aside.adminNav .avatar {
+  height: 100px;
+  background: #111;
+}
+.adminWrap aside.adminNav a {
+  color: #9e9e9e;
+  font: 14px/40px '';
+  display: block;
+  border-width: 0 2px 1px 0;
+  border-color: transparent transparent #111 transparent;
+  border-style: solid;
+  text-indent: 2em;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+.adminWrap aside.adminNav a:hover,
+.adminWrap aside.adminNav a.cur {
+  color: #fff;
+  background: #191919;
+  border-color: transparent #f05023 #111 transparent;
+}
+.adminWrap .right header {
+  background: #252525;
+  line-height: 50px;
+  color: #9e9e9e;
+}
+.adminWrap .right main {
+  padding: 34px;
+}
+.contWrap {
+  padding: 10px;
+}
 .markdown-body {
   overflow: hidden;
 }
-/* footer */
-footer {
+.header {
+  line-height: 50px;
+  padding: 0 10px;
+  background: #73aefb;
+}
+.footer {
   position: fixed;
   width: 100%;
   background: #ccc;
   line-height: 50px;
   text-align: center;
   bottom: 0;
-}
-.contWrap {
-  padding: 10px;
 }

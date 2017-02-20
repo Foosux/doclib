@@ -1,0 +1,15 @@
+doctype
+html
+  head
+    title #{title}
+    include ./includes/head
+  body
+    //- .contWrap
+    .adminWrap.G-layout-box
+        .left
+          include ./includes/adminnav
+        .right.G-box-col 
+          include ./includes/adminheader
+          section.main
+            block content
+      

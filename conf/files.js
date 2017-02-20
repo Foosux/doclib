@@ -2,10 +2,8 @@ var fs = require("fs")
 var path = require("path")
 //配置远程路径
 var remotePath = ""
-//获取当前目录绝对路径，这里resolve()不传入参数
-var rootPath = path.resolve()
 // 文档更目录
-var docsRoot = path.join(rootPath, 'docs')
+var docsRoot = path.join(path.resolve(), 'docs')
 //读取文件存储数组
 var fileHtmlArr = []
 // 记录文件属性
@@ -35,7 +33,7 @@ function readFile(searchPath, savePath, includeName) {
           path: relativePath,
           birthtime: stats.birthtime,
           modifytime: stats.mtime,
-          author: '',
+          author: global._GLOBAL_DATA.role,
           description: '',
           despic: ''
         }
@@ -86,11 +84,11 @@ function fileSort (files) {
   }
 }
 // 写入到filelisttxt文件
-function writeFile(data, savePath, includeName, failname){
+function writeFile(data, savePath, includeName, filename){
   var data = data.join("\n")
   fs.writeFile(path.join(savePath, (includeName+'.jade')), data+'\n', function(err){
       if(err) throw err
-      console.log('写入'+failname+'成功!')
+      console.log('写入'+filename+'成功!')
   })
 }
 
