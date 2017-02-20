@@ -213,6 +213,8 @@ aside.mdNav dt:after {
 .adminWrap aside.adminNav a.cur {
   color: #fff;
   background: #191919;
+}
+.adminWrap aside.adminNav a.cur {
   border-color: transparent #f05023 #111 transparent;
 }
 .adminWrap .right header {

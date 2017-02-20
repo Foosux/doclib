@@ -7,25 +7,39 @@ router.route('/')
     })
   })
 
-router.route('/home')
+router.route('/:subPath')
   .get(function(req, res, next) {
-    res.render('adminHome',{
-    })
+    var subPath = req.params.subPath
+
+    switch (subPath) {
+      case 'home':
+        res.render('adminHome',{
+          subPath: subPath,
+        })
+        break
+      case 'new':
+        res.render('adminNew',{
+          subPath: subPath,
+        })
+        break
+      case 'user':
+        res.render('adminUserManage',{
+          subPath: subPath,
+        })
+        break
+      case 'path':
+        res.render('adminPathManage',{
+          subPath: subPath,
+        })
+        break
+      case 'tag':
+        res.render('adminTagManage',{
+          subPath: subPath,
+        })
+        break
+    }
   })
 
-router.route('/new')
-  .get(function(req, res, next) {
-    res.render('adminNew',{
-    })
-  })
-
-router.route('/user')
-  .get(function(req, res, next) {
-    res.render('adminUserManage',{
-    })
-  })
-
-// router.route('/')
 
 
 module.exports = router

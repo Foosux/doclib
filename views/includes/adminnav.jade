@@ -1,14 +1,14 @@
 aside.adminNav
   header.avatar
   section.navlist
+    - var navConf = [{href: 'home',text: 'HOME'},{href: 'new',text: '发布文章'},{href: 'user',text: '用户管理'},{href: 'path',text: '路径管理'},{href: 'tag',text: '标签管理'}]
     ol
-      dd 
-        a(href='/admin/home' class='cur') HOME 
-      dd 
-        a(href='/admin/new') 发布文章
-      dd  
-        a(href='/admin/user') 用户管理
-      dd  
-        a(href='/admin/user') 路径管理
-      dd  
-        a(href='/admin/user') 标签管理
+      each item in navConf
+        - if (item.href == subPath)
+          dd 
+            a(href=item.href class='cur') #{item.text}
+        - else
+          dd 
+            a(href=item.href) #{item.text}
+        
+  //- script(src="/js/adminNav.js") 

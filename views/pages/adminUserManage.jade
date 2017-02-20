@@ -1,5 +1,7 @@
 extend ../adminlayout
 
 block content
-  dev addUser
-    
+  .adminUserManage
+    form(action='creat', method='post') user
+  
+  script(src="/js/adminUserManage.js") 
