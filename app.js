@@ -7,7 +7,7 @@ require('./db/db')
 
 // 全局变量
 global._GLOBAL_DATA = {
-  role: 'Foosux'
+  role: '聪明的小核桃'
 }
 
 app.locals.marked = require('marked')
