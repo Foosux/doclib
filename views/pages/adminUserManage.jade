@@ -2,6 +2,27 @@ extend ../adminlayout
 
 block content
   .adminUserManage
-    form(action='creat', method='post') user
-  
+    //- form(action='creat', method='post') user
+    header.G-layout-box
+      h2.G-box-col.titBar 用户列表
+      a.G-btn-a(href='javascript:;') 新增用户
+    section
+      table
+        thead
+          tr
+            th 序号
+            th 用户名
+            th 权限
+            th 操作
+        tbody 
+          tr 
+            td 1
+            td 聪明的小核桃
+            td 管理员
+            td 
+              a.actModify(href='javascript:;') 修改
+              a.actDel(href='javascript:;') 删除
+        tfooter
+          tr
+            td.G-tc(colspan='100') 翻页
   script(src="/js/adminUserManage.js") 
