@@ -11,7 +11,19 @@ app.locals.marked = require('marked')
 //     return hljs.highlightAuto(code).value;
 //   }
 // })
-app.locals.test = 1
+var readFiles = require('./conf/files')
+/**
+ * [filesInfo description]
+ * @type {path [string]} 读取哪个路径下的文件
+ * @type {path [string]} 生成的侧边栏信息保存在哪
+ * @type {name [string]} 保存的文件名
+ */
+var filesInfo = readFiles(
+  path.join(__dirname, 'docs/nodejs'),
+  path.join(__dirname, 'views/filesroot'),
+  'express'
+)
+console.log(filesInfo)
 
 // 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'views/pages'))
