@@ -1,6 +1,10 @@
 var express = require('express')
 var router = express.Router()
+var multer  = require('multer')
+var upload = multer({ dest: './public/img/avatar/' })
 var userManage = require('../db/userManage')
+var path = require('path')
+
 
 router.route('/')
   .get(function(req, res, next) {
@@ -44,8 +48,12 @@ router.route('/:subPath')
 
 // 创建用户
 router.route('/user/creatUser')
-  .post(function (req, res, next) {
+  .post(upload.single('avatar'), function (req, res, next) {
+    // 拼装图片信息
+    req.body.avatar = path.join('/',path.relative('public',req.file.path))
+    // console.log(req.body,'\n')
     userManage.creat(req.body, function(msg){
+      console.log(msg)
       if (msg) {
         res.redirect('/admin/user')
       }

@@ -5,6 +5,7 @@ var userManage = {
     var _user = new UserModel({
       userName: data.userName,
       password: data.password,
+      avatar: data.avatar,
       role: data.role
     })
 
@@ -16,7 +17,6 @@ var userManage = {
   fetch: function (callback) {
     UserModel.fetch(function(err,data) {
       if (err) return console.log(err)
-      console.log(data)
       callback(data)
     })
   },

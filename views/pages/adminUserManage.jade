@@ -18,9 +18,11 @@ block content
         tbody 
           - var i=1
           each item in data
-            tr(class="item-id-#{item._id}")
+            tr(class='item-id-#{item._id}')
               td #{i++}
               td 
+                .imgWrap
+                  img(src='#{item.avatar?item.avatar:"/img/avatar/def.jpg"}',alt='')
               td #{item.userName}
               td #{item.role==1 ? '尊贵会员' : '超级管理员'}
               td #{moment(item.meta.createAt).format('YYYY-MM-DD hh:mm:ss')}
@@ -31,26 +33,29 @@ block content
           tr
             td.G-tc(colspan='100') 翻页
           
-  .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
+  .G-layerWrap.G-layout-box.G-center-v.G-center-h
     .G-layer
       .layerName
-      form(action='user/creatUser', method='post')
-        a.close.actClose(href='javascript:;') X
-        <h3 class="title">新增用户</h3>
+      form(action='user/creatUser', method='post', enctype="multipart/form-data")
+        a.close.actClose(href='javascript:;') x
+        h3.title 新增用户
         .content.def.G-form-list
           .row.G-layout-box
-            em 用户名：
-            input.G-box-col(type="text", name="userName", placeholder='请填写用户名', required)
+            em 用户名称：
+            input.G-box-col(type='text', name='userName', placeholder='请填写用户名', required)
           .row.G-layout-box
-            em 密&nbsp;&nbsp;&nbsp;&nbsp;码：
-            input.G-box-col(type="password", name="password", placeholder='请填写密码', required)
+            em 用户密码：
+            input.G-box-col(type='password', name='password', placeholder='请填写密码', required)
           .row.G-layout-box
-            em 权&nbsp;&nbsp;&nbsp;&nbsp;限：
+            em 设置权限：
             - var opt=[{key:2,value:'尊贵会员'},{key:1,value:'超级管理员'}]
             select(name='role')
               each item in opt
                 option(value=item.key) #{item.value}
+          .row
+            em 上传头像：
+            input(type='file', name='avatar', required)
         .btns
           button.G-btn-a 立即提交
   
-  script(src="/js/adminUserManage.js") 
+  script(src='/js/adminUserManage.js') 
