@@ -3,6 +3,7 @@ var app = express()
 var path = require('path')
 var fs = require('fs')
 var logger = require('morgan')
+var bodyParser= require('body-parser')
 require('./db/db')
 
 // 全局变量
@@ -10,6 +11,7 @@ global._GLOBAL_DATA = {
   role: '聪明的小核桃'
 }
 
+app.locals.moment = require('moment')
 app.locals.marked = require('marked')
 // app.locals.marked.setOptions({
 //   highlight: function (code) {
@@ -39,6 +41,7 @@ app.use(require('stylus').middleware({
   dest: path.join(__dirname, 'public/css')
 }))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.urlencoded())
 
 
 // var accessLog = fs.createWriteStream('../access.log', {flags : 'a'})
