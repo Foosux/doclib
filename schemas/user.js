@@ -25,6 +25,10 @@ var UserSchema = new mongoose.Schema({
       type: Date,
       default: Date.now()
     }
+  },
+  time: {
+    type: Date,
+    default: Date.now()
   }
 })
 
@@ -41,6 +45,7 @@ UserSchema.statics = {
   fetch: function (cb) {
     return this
       .find()
+      .sort({time:-1})
       .exec(cb)
   }
 }

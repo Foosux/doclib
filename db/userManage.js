@@ -16,7 +16,17 @@ var userManage = {
   fetch: function (callback) {
     UserModel.fetch(function(err,data) {
       if (err) return console.log(err)
+      console.log(data)
       callback(data)
+    })
+  },
+  remove: function (id, callback) {
+    UserModel.remove({_id: id}, function(err, data) {
+      if (err) return console.log(err)
+      callback({
+        code: 1,
+        msg: '删除成功'
+      })
     })
   }
 }

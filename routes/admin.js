@@ -7,7 +7,6 @@ router.route('/')
     res.render('adminHome',{
     })
   })
-
 router.route('/:subPath')
   .get(function(req, res, next) {
     var subPath = req.params.subPath
@@ -52,6 +51,20 @@ router.route('/user/creatUser')
       }
     })
   })
-
+// 删除用户
+router.route('/user')
+  .delete(function (req, res, next) {
+    var id = req.query.id
+    if (id) {
+      userManage.remove(id, function (resData) {
+        res.json(resData)
+      })
+    } else {
+      res.json({
+        code: 0,
+        msg: '请求数据缺少ID参数'
+      })
+    }
+  })
 
 module.exports = router
