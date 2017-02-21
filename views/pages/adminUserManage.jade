@@ -2,10 +2,9 @@ extend ../adminlayout
 
 block content
   .adminUserManage
-    //- form(action='creat', method='post') user
     header.G-layout-box
       h2.G-box-col.titBar 用户列表
-      a.G-btn-a(href='javascript:;') 新增用户
+      a.G-btn-a.actAddUser(href='javascript:;') 新增用户
     section
       table
         thead
@@ -25,4 +24,26 @@ block content
         tfooter
           tr
             td.G-tc(colspan='100') 翻页
+  .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
+    .G-layer
+      .layerName
+      form(action='creatUser', method='post')
+        a.close.actClose(href='javascript:;') X
+        <h3 class="title">新增用户</h3>
+        .content.def.G-form-list
+          .row.G-layout-box
+            em 用户名：
+            input.G-box-col(type="text", name="userId", placeholder='请填写用户名', required)
+          .row.G-layout-box
+            em 密&nbsp;&nbsp;&nbsp;&nbsp;码：
+            input.G-box-col(type="password", name="password", placeholder='请填写密码', required)
+          .row.G-layout-box
+            em 权&nbsp;&nbsp;&nbsp;&nbsp;限：
+            - var opt=[{key:2,value:'尊贵会员'},{key:1,value:'超级管理员'}]
+            select(name='')
+              each item in opt
+                option(value=item.key) #{item.value}
+        .btns
+          button.G-btn-a 立即提交
+  
   script(src="/js/adminUserManage.js") 

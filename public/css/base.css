@@ -453,3 +453,64 @@ a.G-btn-a:focus {
   background: #f9f2f4;
   border-width: 0 1px 1px 0;
 }
+.G-layerWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+}
+.G-layer {
+  background: #fff;
+  border-radius: 3px;
+  padding-bottom: 15px;
+  position: relative;
+}
+.G-layer .close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: -20px;
+  top: -20px;
+  font: 26px/40px "iconfont";
+  background: #26282d;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+.G-layer .close:hover {
+  color: rgba(255,255,255,0.9);
+}
+.G-layer .title {
+  font: bold 18px/50px '';
+  color: #333;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.G-layer .content {
+  min-width: 400px;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+.G-layer .content.def {
+  padding: 20px 30px;
+}
+.G-layer .content textarea {
+  resize: none;
+  padding: 8px 10px;
+  display: block;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+}
+.G-layer .btns {
+  text-align: center;
+  padding-top: 15px;
+}
+.G-layer .btns button,
+.G-layer .btns a {
+  margin: 0 10px;
+}
