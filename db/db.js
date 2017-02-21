@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-// require('./index')
 
 // 链接数据库
 mongoose.connect('mongodb://127.0.0.1:12345/doclib')
