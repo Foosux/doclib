@@ -24,7 +24,7 @@ block content
                 .imgWrap
                   img(src='#{item.avatar?item.avatar:"/img/avatar/def.jpg"}',alt='')
               td #{item.userName}
-              td #{item.role==1 ? '尊贵会员' : '超级管理员'}
+              td #{item.role==1 ? '超级管理员' : '尊贵会员'}
               td #{moment(item.meta.createAt).format('YYYY-MM-DD hh:mm:ss')}
               td 
                 a.actModify(href='javascript:;', data-id='#{item._id}') 修改
@@ -33,7 +33,7 @@ block content
           tr
             td.G-tc(colspan='100') 翻页
           
-  .G-layerWrap.G-layout-box.G-center-v.G-center-h
+  .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
     .G-layer
       .layerName
       form(action='user/creatUser', method='post', enctype="multipart/form-data")
