@@ -33,6 +33,5 @@ $(function(){
         alert(res.msg)
       }
     })
-
   })
 })

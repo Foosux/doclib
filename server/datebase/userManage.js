@@ -1,4 +1,4 @@
-var UserModel = require('../models/user')
+var UserModel = require('./models/user')
 
 var userManage = {
   creat: function (data, callback) {

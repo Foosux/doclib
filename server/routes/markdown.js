@@ -8,11 +8,12 @@ router.route('/:name')
     var fileName = req.params.name + '.md'
     var fileQuery = req.query.path || '.' || ''
     // console.log(path.join(__dirname,'..','docs',fileQuery,fileName))
-    fs.readFile(path.join(__dirname,'..','docs',fileQuery,fileName), 'utf8', function(err, str) {
+    fs.readFile(path.join(path.resolve(),'docs',fileQuery,fileName), 'utf8', function(err, str) {
+      if (err) return console.error(err)
       fn(null, res, str)
     })
     function fn (err, res, str) {
-      res.render('md',{
+      res.render('markdown',{
         htmlStr: str
       })
     }
