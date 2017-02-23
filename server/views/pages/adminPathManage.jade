@@ -1,10 +1,10 @@
 extend ../adminlayout
 
 block content
-  .adminUserManage
+  .adminPathManage
     header.G-layout-box
       h2.G-box-col.titBar 文章分类管理
-      a.G-btn-a.actAdd(href='javascript:;') 新增一级分类
+      a.G-btn-a.actAddPath(href='javascript:;') 新增一级分类
     section
       //- - var i=1
       table
@@ -28,29 +28,17 @@ block content
           tr
             td.G-tc(colspan='100') 翻页
           
-  //- .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
-  //-   .G-layer
-  //-     .layerName
-  //-     form(action='user/creatUser', method='post', enctype="multipart/form-data")
-  //-       a.close.actClose(href='javascript:;') x
-  //-       h3.title 新增用户
-  //-       .content.def.G-form-list
-  //-         .row.G-layout-box
-  //-           em 用户名称：
-  //-           input.G-box-col(type='text', name='userName', placeholder='请填写用户名', required)
-  //-         .row.G-layout-box
-  //-           em 用户密码：
-  //-           input.G-box-col(type='password', name='password', placeholder='请填写密码', required)
-  //-         .row.G-layout-box
-  //-           em 设置权限：
-  //-           - var opt=[{key:2,value:'尊贵会员'},{key:1,value:'超级管理员'}]
-  //-           select(name='role')
-  //-             each item in opt
-  //-               option(value=item.key) #{item.value}
-  //-         .row
-  //-           em 上传头像：
-  //-           input(type='file', name='avatar', required)
-  //-       .btns
-  //-         button.G-btn-a 立即提交
+  .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
+    .G-layer
+      .addPathLayer
+      form(action='/admin/path/creatParent', method='post')
+        a.close.actClose(href='javascript:;') x
+        h3.title 新增一级分类
+        .content.def.G-form-list
+          .row.G-layout-box
+            em 分类名称：
+            input.G-box-col(type='text', name='userName', placeholder='请填写分类名', required)
+        .btns
+          button.G-btn-a 立即提交
   
-  //- script(src='/js/adminUserge.js') 
+  script(src='/js/page/adminPathManage.js') 

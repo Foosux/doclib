@@ -35,11 +35,11 @@ var readFiles = require('./lib/files')
  * @type {path [string]} 生成的侧边栏信息保存在哪
  * @type {name [string]} 保存的文件名
  */
-var filesInfo = readFiles(
-  path.join(__dirname, 'docs'),
-  path.join(__dirname, 'server/views/filesroot'),
-  'nodejs'
-)
+// var filesInfo = readFiles(
+//   path.join(__dirname, 'docs'),
+//   path.join(__dirname, 'server/views/filesroot'),
+//   'nodejs'
+// )
 // 读取文件返回值
 // console.log(filesInfo)
 

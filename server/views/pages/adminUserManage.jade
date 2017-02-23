@@ -35,8 +35,8 @@ block content
           
   .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
     .G-layer
-      .layerName
-      form(action='user/creatUser', method='post', enctype="multipart/form-data")
+      .addUserLayer
+      form(action='/admin/user/creatUser', method='post', enctype="multipart/form-data")
         a.close.actClose(href='javascript:;') x
         h3.title 新增用户
         .content.def.G-form-list
@@ -58,4 +58,4 @@ block content
         .btns
           button.G-btn-a 立即提交
   
-  script(src='/js/adminUserManage.js') 
+  script(src='/js/page/adminUserManage.js') 
