@@ -2,6 +2,55 @@ extend ../adminlayout
 
 block content
   .adminUserManage
-    form(action='creat', method='post') path
+    header.G-layout-box
+      h2.G-box-col.titBar 文章分类管理
+      a.G-btn-a.actAdd(href='javascript:;') 新增一级分类
+    section
+      //- - var i=1
+      table
+        thead
+          tr
+            th 级别
+            th 上级目录
+            th 名称
+            th 创建时间
+            th 操作
+        tbody 
+          //- each item in data
+            tr
+              td 
+              td 
+              td
+              td 
+                a.actModify(href='javascript:;', data-id='#{item._id}') 修改
+                a.actDel(href='javascript:;', data-id='#{item._id}') 删除
+        tfooter
+          tr
+            td.G-tc(colspan='100') 翻页
+          
+  //- .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
+  //-   .G-layer
+  //-     .layerName
+  //-     form(action='user/creatUser', method='post', enctype="multipart/form-data")
+  //-       a.close.actClose(href='javascript:;') x
+  //-       h3.title 新增用户
+  //-       .content.def.G-form-list
+  //-         .row.G-layout-box
+  //-           em 用户名称：
+  //-           input.G-box-col(type='text', name='userName', placeholder='请填写用户名', required)
+  //-         .row.G-layout-box
+  //-           em 用户密码：
+  //-           input.G-box-col(type='password', name='password', placeholder='请填写密码', required)
+  //-         .row.G-layout-box
+  //-           em 设置权限：
+  //-           - var opt=[{key:2,value:'尊贵会员'},{key:1,value:'超级管理员'}]
+  //-           select(name='role')
+  //-             each item in opt
+  //-               option(value=item.key) #{item.value}
+  //-         .row
+  //-           em 上传头像：
+  //-           input(type='file', name='avatar', required)
+  //-       .btns
+  //-         button.G-btn-a 立即提交
   
-  //- script(src="/js/adminUserManage.js") 
+  //- script(src='/js/adminUserge.js') 

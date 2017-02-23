@@ -6,7 +6,7 @@ aside.adminNav
         img(src="#{global._GLOBAL_DATA.avatar}", alt="")
       .name.G-tc #{global._GLOBAL_DATA.role}
   section.navlist
-    - var navConf = [{href: 'home',text: 'HOME'},{href: 'new',text: '发布文章'},{href: 'user',text: '用户管理'},{href: 'path',text: '路径管理'},{href: 'tag',text: '标签管理'}]
+    - var navConf = [{href: 'home',text: 'HOME'},{href: 'new',text: '发布文章'},{href: 'user',text: '用户管理'},{href: 'path',text: '文章分类管理'},{href: 'tag',text: '标签管理'}]
     ol
       each item in navConf
         - if (item.href == subPath)
