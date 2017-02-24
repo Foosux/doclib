@@ -9,12 +9,12 @@ var PathSchemas = new mongoose.Schema({
     required: true
   },
   level: {
-    type: Number,
+    type: String,
     // default: 1,
     required: true
   },
   parentId: {
-    type: Number,
+    type: String,
     // default: 1,
     required: true
   },

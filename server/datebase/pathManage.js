@@ -28,6 +28,14 @@ var PathManage = {
         msg: '删除成功'
       })
     })
+  },
+  format: function(data) {
+    var res = {}
+    data.forEach(function(item,i){
+      res['lv'+item.level] ? '' : res['lv'+item.level]=[]
+      res['lv'+item.level].push(data[i])
+    })
+    return res
   }
 }
 

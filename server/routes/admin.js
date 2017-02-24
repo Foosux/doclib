@@ -35,10 +35,10 @@ router.route('/:subPath')
         break
       case 'path':
         pathManage.fetch(function(data){
-          console.log(data)
+          var formatData = pathManage.format(data)
           res.render('adminPathManage', {
             subPath: subPath,
-            data: data
+            data: formatData
           })
         })
         break
@@ -78,8 +78,8 @@ router.route('/user')
       })
     }
   })
-// 创建一级分类
-router.route('/path/creatParent')
+// 创建分类
+router.route('/path/creat')
   .post(function (req, res, next) {
     pathManage.creat(req.body, function(msg){
       if (msg) {

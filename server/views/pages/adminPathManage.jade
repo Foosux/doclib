@@ -6,10 +6,11 @@ block content
       h2.G-box-col 文章分类管理
       a.G-btn-a.actAddPath(href='javascript:;') 新增一级分类
     section
-      for item in data
-        table(class='item-id-#{item._id}')
+      for item in data.lv1
+        - var lv1Name = item.pathName
+        table(id='item-#{item._id}')
           caption #{item.pathName}
-            a.actDelParent(href='javascript:;', data-id='#{item._id}') 删除该分类
+            a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除该分类
           thead
             tr
               th(width="5%") 级别
@@ -17,20 +18,33 @@ block content
               th(width="20%") 名称
               th(width="20%") 创建时间
               th 操作
-          tbody 
+          tbody
+              //- 一级目录 
               tr
                 td #{item.level}
-                td #{item.parentId}
+                td #{item.parentName}
                 td #{item.pathName}
                 td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
                 td
-                  a.actModify(href='javascript:;', data-id='#{item._id}') 新增子分类
-                  a.actDel(href='javascript:;', data-id='#{item._id}') 删除
+                  a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
+              //- 二级目录
+              for item in data.lv2
+                //- span #{lv1Name}
+                //- span #{item.pathName}
+                - if (item.parentName==lv1Name)
+                  tr(id='item-#{item._id}')
+                    td #{item.level}
+                    td #{item.parentName+'/'}
+                    td #{item.pathName}
+                    td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                    td
+                      a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
+                      a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
           
   .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
     .G-layer
       .addPathLayer
-      form(action='/admin/path/creatParent', method='post')
+      form(action='/admin/path/creat', method='post')
         a.close.actClose(href='javascript:;') x
         h3.title 新增一级分类
         .content.def.G-form-list
@@ -39,7 +53,30 @@ block content
             input.G-box-col(type='text', name='pathName', placeholder='请填写分类名', required)
         .btns
           input(type='hidden', name='parentId', value='0')
+          input(type='hidden', name='parentName', value='/')
           input(type='hidden', name='level', value='1')
+          button.G-btn-a 立即提交
+  
+  .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
+    .G-layer
+      .addSubPathLayer
+      form(action='/admin/path/creat', method='post')
+        a.close.actClose(href='javascript:;') x
+        h3.title 新增子分类
+        .content.def.G-form-list
+          .row.G-layout-box.thin
+            em 分类级别：
+            span.level
+          .row.G-layout-box.thin
+            em 上级分类：
+            span.parentName
+          .row.G-layout-box
+            em 分类名称：
+            input.G-box-col(type='text', name='pathName', placeholder='请填写子类名', required)
+        .btns
+          input.parentId(type='hidden', name='parentId')
+          input.parentName.G-box-col(type='hidden', name='parentName')
+          input.level.G-box-col(type='hidden', name='level',value='')
           button.G-btn-a 立即提交
   
   script(src='/js/page/adminPathManage.js') 

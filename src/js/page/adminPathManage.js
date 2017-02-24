@@ -7,12 +7,12 @@ $(function(){
     $('.addPathLayer').parents('.G-layerWrap').show()
   })
   // 删除
-  $('.actDelParent').click(function(e){
+  $('.actDelItem').click(function(e){
     // 获取节点及ID
     var id = $(e.target).data('id')
-    var table = $('.item-id-' + id)
+    var itemNode = $('#item-' + id)
     // 打印节点及数据
-    // console.log(id,table)
+    // console.log(id,itemNode)
 
     // 异步发送删除数据的请求
     $.ajax({
@@ -21,13 +21,23 @@ $(function(){
     })
     .done(function(res) {
       if (res.code === 1) {
-        if (table.length > 0) {
+        if (itemNode.length > 0) {
           alert('删除成功')
-          table.remove()
+          itemNode.remove()
         }
       } else {
         alert(res.msg)
       }
     })
   })
+  // 新增子类
+  $(".actAddSubItem").click(function(e){
+    var target = $(e.currentTarget);
+    var actData = $.queryToJson(target.attr("actdata"));
+    $('.parentId').val(actData.parentId)
+    $('.parentName').val(actData.parentName).text(actData.parentName+'/')
+    $('.level').val(actData.level).text(actData.level)
+    $('.addSubPathLayer').parents('.G-layerWrap').show();
+  })
+
 })

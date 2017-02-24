@@ -134,6 +134,9 @@ input:focus {
 input[type='file'] {
   outline: none;
 }
+input:disabled {
+  border: none;
+}
 form button:last-child:not(:first-child) {
   margin-left: 15px;
 }
