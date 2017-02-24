@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose')
 
-var PathSchemas = new mongoose({
+var PathSchemas = new mongoose.Schema({
   pathName: {
     type: String,
     required: true
@@ -12,7 +12,7 @@ var PathSchemas = new mongoose({
     type: Number,
     // default: 1,
     required: true
-  }
+  },
   parentId: {
     type: Number,
     // default: 1,
@@ -34,9 +34,9 @@ var PathSchemas = new mongoose({
 })
 PathSchemas.pre('save',function(next) {
   if (this.isNew) {
-    this.meta.createAt = this.meta.updateAt = Date.now()
+    this.createAt = this.updateAt = Date.now()
   }else{
-    this.meta.updateAt = Date.now()
+    this.updateAt = Date.now()
   }
   next() // 保持流程
 })
@@ -45,6 +45,7 @@ PathSchemas.statics = {
   fetch: function (cb) {
     return this
       .find()
+      .sort({updateAt:-1})
       .exec(cb)
   }
 }

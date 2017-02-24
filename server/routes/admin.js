@@ -4,8 +4,7 @@ var router = express.Router()
 var multer  = require('multer')
 var upload = multer({ dest: path.join(path.resolve(),'./src/img/avatar/') })
 var userManage = require('../datebase/userManage')
-
-
+var pathManage = require('../datebase/pathManage')
 
 router.route('/')
   .get(function(req, res, next) {
@@ -35,8 +34,12 @@ router.route('/:subPath')
         })
         break
       case 'path':
-        res.render('adminPathManage', {
-          subPath: subPath,
+        pathManage.fetch(function(data){
+          console.log(data)
+          res.render('adminPathManage', {
+            subPath: subPath,
+            data: data
+          })
         })
         break
       case 'tag':
@@ -66,6 +69,30 @@ router.route('/user')
     var id = req.query.id
     if (id) {
       userManage.remove(id, function (resData) {
+        res.json(resData)
+      })
+    } else {
+      res.json({
+        code: 0,
+        msg: '请求数据缺少ID参数'
+      })
+    }
+  })
+// 创建一级分类
+router.route('/path/creatParent')
+  .post(function (req, res, next) {
+    pathManage.creat(req.body, function(msg){
+      if (msg) {
+        res.redirect('/admin/path')
+      }
+    })
+  })
+// 删除一级分类
+router.route('/path')
+  .delete(function (req, res, next) {
+    var id = req.query.id
+    if (id) {
+      pathManage.remove(id, function (resData) {
         res.json(resData)
       })
     } else {

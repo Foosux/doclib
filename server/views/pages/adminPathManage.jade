@@ -2,31 +2,30 @@ extend ../adminlayout
 
 block content
   .adminPathManage
-    header.G-layout-box
-      h2.G-box-col.titBar 文章分类管理
+    header.G-layout-box.titBar
+      h2.G-box-col 文章分类管理
       a.G-btn-a.actAddPath(href='javascript:;') 新增一级分类
     section
-      //- - var i=1
-      table
-        thead
-          tr
-            th 级别
-            th 上级目录
-            th 名称
-            th 创建时间
-            th 操作
-        tbody 
-          //- each item in data
+      for item in data
+        table(class='item-id-#{item._id}')
+          caption #{item.pathName}
+            a.actDelParent(href='javascript:;', data-id='#{item._id}') 删除该分类
+          thead
             tr
-              td 
-              td 
-              td
-              td 
-                a.actModify(href='javascript:;', data-id='#{item._id}') 修改
-                a.actDel(href='javascript:;', data-id='#{item._id}') 删除
-        tfooter
-          tr
-            td.G-tc(colspan='100') 翻页
+              th(width="5%") 级别
+              th(width="20%") 上级目录
+              th(width="20%") 名称
+              th(width="20%") 创建时间
+              th 操作
+          tbody 
+              tr
+                td #{item.level}
+                td #{item.parentId}
+                td #{item.pathName}
+                td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                td
+                  a.actModify(href='javascript:;', data-id='#{item._id}') 新增子分类
+                  a.actDel(href='javascript:;', data-id='#{item._id}') 删除
           
   .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
     .G-layer
@@ -37,8 +36,10 @@ block content
         .content.def.G-form-list
           .row.G-layout-box
             em 分类名称：
-            input.G-box-col(type='text', name='userName', placeholder='请填写分类名', required)
+            input.G-box-col(type='text', name='pathName', placeholder='请填写分类名', required)
         .btns
+          input(type='hidden', name='parentId', value='0')
+          input(type='hidden', name='level', value='1')
           button.G-btn-a 立即提交
   
   script(src='/js/page/adminPathManage.js') 

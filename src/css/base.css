@@ -284,13 +284,42 @@ aside.mdNav dt:after {
 }
 .adminWrap .titBar {
   font: 16px/35px '';
-  margin-bottom: 15px;
+  border-bottom: 1px dashed #e5e5e5;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
 }
 .adminWrap table {
   border: 1px solid #e5e5e5;
   width: 100%;
   text-align: center;
   font: 14px/1 '';
+  margin-bottom: 20px;
+}
+.adminWrap table caption {
+  position: relative;
+  text-indent: 1em;
+  font: bolder 12px/18px '';
+  padding-bottom: 10px;
+}
+.adminWrap table caption a {
+  display: none;
+  margin-left: 20px;
+}
+.adminWrap table caption:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+  background: #ccc;
+  left: 0;
+  top: 0;
+}
+.adminWrap table:hover a {
+  display: inline-block;
+}
+.adminWrap table:hover caption:after {
+  background: #f05023;
 }
 .adminWrap table .imgWrap {
   width: 50px;
@@ -307,6 +336,9 @@ aside.mdNav dt:after {
   background: #f5f5f5;
   text-align: center;
   border: 1px solid #e5e5e5;
+}
+.adminWrap table th:first-child {
+  min-width: 40px;
 }
 .adminWrap table td {
   padding: 5px;
