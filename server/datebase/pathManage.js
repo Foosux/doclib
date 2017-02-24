@@ -3,10 +3,10 @@ var PathModel = require('./models/path')
 var PathManage = {
   creat: function (data, callback) {
     var _user = new PathModel({
-      pathName: data.pathName,
-      level: data.level,
-      parentId: data.parentId,
-      parentName: data.parentName
+      pathName: data.pathName || 'root',
+      level: data.level || 0,
+      parentId: data.parentId || 0,
+      parentName: data.parentName || '/'
     })
 
     _user.save(function(err, _user) {
@@ -30,11 +30,17 @@ var PathManage = {
     })
   },
   format: function(data) {
-    var res = {}
+    var res = {
+      maxDeep : 0
+    }
     data.forEach(function(item,i){
-      res['lv'+item.level] ? '' : res['lv'+item.level]=[]
+      if (!res['lv'+item.level]) {
+        res['lv'+item.level]=[]
+        res.maxDeep++
+      }
       res['lv'+item.level].push(data[i])
     })
+    console.log(res)
     return res
   }
 }

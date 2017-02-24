@@ -38,6 +38,10 @@ router.route('/:subPath')
           var formatData = pathManage.format(data)
           res.render('adminPathManage', {
             subPath: subPath,
+            // data:{
+            //   maxDeep:0,
+            //   lv1:{}
+            // }
             data: formatData
           })
         })
@@ -81,7 +85,8 @@ router.route('/user')
 // 创建分类
 router.route('/path/creat')
   .post(function (req, res, next) {
-    pathManage.creat(req.body, function(msg){
+    var reqBody = req.body || {}
+    pathManage.creat(reqBody, function(msg){
       if (msg) {
         res.redirect('/admin/path')
       }

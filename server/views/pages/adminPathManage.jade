@@ -7,7 +7,7 @@ block content
       a.G-btn-a.actAddPath(href='javascript:;') 新增一级分类
     section
       for item in data.lv1
-        - var lv1Name = item.pathName
+        - var root = item.pathName
         table(id='item-#{item._id}')
           caption #{item.pathName}
             a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除该分类
@@ -27,19 +27,19 @@ block content
                 td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
                 td
                   a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
-              //- 二级目录
-              for item in data.lv2
-                //- span #{lv1Name}
-                //- span #{item.pathName}
-                - if (item.parentName==lv1Name)
-                  tr(id='item-#{item._id}')
-                    td #{item.level}
-                    td #{item.parentName+'/'}
-                    td #{item.pathName}
-                    td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
-                    td
-                      a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
-                      a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
+              //- 子目录
+              - for (var i=2; i<data.maxDeep+1; i++)
+                - each item in data['lv'+i]
+                  - if ((item.parentName == root) || (item.parentName==parent))
+                    tr(id='item-#{item._id}')
+                      td #{item.level}
+                      td #{item.parentName+'/'}
+                      td #{item.pathName}
+                      td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                      td
+                        a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=#{i+1}') 新增子分类
+                        a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
+                
           
   .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
     .G-layer
@@ -65,11 +65,11 @@ block content
         h3.title 新增子分类
         .content.def.G-form-list
           .row.G-layout-box.thin
-            em 分类级别：
-            span.level
-          .row.G-layout-box.thin
             em 上级分类：
             span.parentName
+          .row.G-layout-box.thin
+            em 当前级别：
+            span.level
           .row.G-layout-box
             em 分类名称：
             input.G-box-col(type='text', name='pathName', placeholder='请填写子类名', required)
