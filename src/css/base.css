@@ -350,6 +350,12 @@ aside.mdNav dt:after {
 .adminWrap table td a {
   margin: 0 5px;
 }
+.adminWrap table .tr-lv2 {
+  background: #dfdfdf;
+}
+.adminWrap table .tr-lv3 {
+  background: #f5f5f5;
+}
 .contWrap {
   padding: 10px;
 }

@@ -28,17 +28,30 @@ block content
                 td
                   a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
               //- 子目录
-              - for (var i=2; i<data.maxDeep+1; i++)
-                - each item in data['lv'+i]
-                  - if ((item.parentName == root) || (item.parentName==parent))
-                    tr(id='item-#{item._id}')
+              //- - for (var i=2; i<data.maxDeep+1; i++)
+              - if (data.maxDeep >= 2)
+                - each item in data.lv2
+                  - var lv2Name = item.pathName
+                  - if (item.parentName == root)
+                    tr.tr-lv2(id='item-#{item._id}')
                       td #{item.level}
                       td #{item.parentName+'/'}
                       td #{item.pathName}
                       td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
                       td
-                        a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=#{i+1}') 新增子分类
+                        a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=3') 新增子分类
                         a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
+                    - if (data.maxDeep >= 3)
+                      - each item in data.lv3
+                        - if (item.parentName == lv2Name)
+                          tr.tr-lv3(id='item-#{item._id}')
+                            td #{item.level}
+                            td #{item.parentName+'/'}
+                            td #{item.pathName}
+                            td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                            td
+                              //- a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=#{i+1}') 新增子分类
+                              a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
                 
           
   .G-layerWrap.G-layout-box.G-center-v.G-center-h(style='display:none')
