@@ -16,7 +16,7 @@ var PathManage = {
   },
   fetch: function (callback) {
     PathModel.fetch(function(err,data) {
-      if (err) return console.log(err)
+      if (err) console.log(err)
       callback(data)
     })
   },

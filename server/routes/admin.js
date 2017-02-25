@@ -35,14 +35,9 @@ router.route('/:subPath')
         break
       case 'path':
         pathManage.fetch(function(data){
-          var formatData = pathManage.format(data)
           res.render('adminPathManage', {
             subPath: subPath,
-            // data:{
-            //   maxDeep:0,
-            //   lv1:{}
-            // }
-            data: formatData
+            data: data.length ? pathManage.format(data) : {maxDeep:0, lv1:{}}
           })
         })
         break
