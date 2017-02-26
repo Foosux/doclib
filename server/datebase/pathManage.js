@@ -40,7 +40,6 @@ var PathManage = {
       }
       res['lv'+item.level].push(data[i])
     })
-    console.log(res)
     return res
   }
 }

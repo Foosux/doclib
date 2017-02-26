@@ -24,7 +24,7 @@ block content
                 td #{item.level}
                 td #{item.parentName}
                 td #{item.pathName}
-                td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                td #{moment(item.updateAt).format('YYYY-MM-DD')}
                 td
                   a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=2') 新增子分类
               //- 子目录
@@ -37,7 +37,7 @@ block content
                       td #{item.level}
                       td #{item.parentName+'/'}
                       td #{item.pathName}
-                      td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                      td #{moment(item.updateAt).format('YYYY-MM-DD')}
                       td
                         a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=3') 新增子分类
                         a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
@@ -46,9 +46,9 @@ block content
                         - if (item.parentName == lv2Name)
                           tr.tr-lv3(id='item-#{item._id}')
                             td #{item.level}
-                            td #{item.parentName+'/'}
+                            td #{root+'/'+item.parentName+'/'}
                             td #{item.pathName}
-                            td #{moment(item.updateAt).format('YYYY-MM-DD hh:mm:ss')}
+                            td #{moment(item.updateAt).format('YYYY-MM-DD')}
                             td
                               //- a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=#{i+1}') 新增子分类
                               a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除

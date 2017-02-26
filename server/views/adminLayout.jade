@@ -4,12 +4,10 @@ html
     title #{title}
     include ./includes/head
   body
-    //- .contWrap
     .adminWrap.G-layout-box
-        .left
-          include ./includes/adminNav
-        .right.G-box-col 
-          //- include ./includes/adminHeader
-          section.main
-            block content
+      .left
+        include ./includes/adminNav
+      .right.G-box-col 
+        section.main
+          block content
       

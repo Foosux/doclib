@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded())
 // 全局变量
 global._GLOBAL_DATA = {
   role: '聪明的小核桃',
-  avatar: '/img/avatar/68b15fffe24e67c07c989e3fe27b889a'
+  avatar: '/images/avatar/def.jpg'
 }
 
 var readFiles = require('./lib/files')
