@@ -21,8 +21,11 @@ router.route('/:subPath')
         })
         break
       case 'new':
-        res.render('adminNew', {
-          subPath: subPath,
+        pathManage.fetch(function(data){
+          res.render('adminNew', {
+            subPath: subPath,
+            data: data
+          })
         })
         break
       case 'user':
@@ -87,12 +90,26 @@ router.route('/path/creat')
       }
     })
   })
-// 删除一级分类
-router.route('/path')
+
+router.route('/path/list')
+  // 获取数据
+  .get(function (req, res, next) {
+    var id = req.query.id
+    if (id!='undefined') {
+      pathManage.fetchById(id, function(resData) {
+        res.json(resData)
+      })
+    } else {
+      res.json({
+        code: 0,
+        msg: '请求数据缺少ID参数'
+      })
+    }
+  })
+  // 删除分类
   .delete(function (req, res, next) {
     var id = req.query.id
-    // console.log(id)
-    if (id) {
+    if (id='undefined') {
       pathManage.remove(id, function (resData) {
         res.json(resData)
       })

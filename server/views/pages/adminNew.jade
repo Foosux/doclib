@@ -5,24 +5,29 @@ block content
     form.formArea.G-box-col.G-layout-box.G-form-list(action='creat', method='post')
       .row.G-layout-box
         em 文章标题：
-        input.G-box-col(type="text", name="title", placeholder='来个标题呗 ^.^')
+        input.G-box-col(type="text", name="title", placeholder='来个标题呗 ^.^', required)
       .row.G-layout-box
         em 文章概述：
         textarea.ta.G-box-col(name="description", placeholder='写个前言？')
       .row
         em 选择分类：
-        select(name="dir")
+        select#lv-1(name='lv1', required)
           option(value='') 请选择
-          option(value='nodejs') nodejs
-          option(value='express') express
+          each item in data
+            - if (item.level=='1')
+              option(value='#{item.pathName}', data-id='#{item._id}') #{item.pathName}
+        select#lv-2(name='lv2', style='display:none;')
+        select#lv-3(name='lv3', style='display:none;')
       .row
         em 添加标签：
         span node
       .row.G-box-col
-        textarea.mdta(name="main", placeholder='# Welcome markDown')
+        textarea.mdta(name="main", placeholder='# Welcome markDown', required)
       .row.G-layout-box
         .G-box-col (note here)
         button.G-btn-a(type='submit') 预览
         button.G-btn-a(type='submit') 提交
+        //- input#initJson(type='hidden',value='#{data}', disabled)
     .viewArea.G-box-col(style='display:none')
       dev 预览
+  script(src='/js/pages/adminNew.js') 

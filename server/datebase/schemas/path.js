@@ -41,6 +41,17 @@ PathSchemas.statics = {
       .find()
       .sort({'meta.updateAt':-1})
       .exec(cb)
+  },
+  fetchById: function (id, cb) {
+    return this
+      .find({
+        $or: [
+          {_id: id},
+          {parentId: id}
+        ]
+      })
+      .sort({'meta.updateAt':-1})
+      .exec(cb)
   }
 }
 

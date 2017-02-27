@@ -18,7 +18,7 @@ $(function(){
     // 异步发送删除数据的请求
     $.ajax({
       type: 'DELETE',
-      url: '/admin/path?id=' + id
+      url: '/admin/path/list?id=' + id
     })
     .done(function(res) {
       if (res.code === 1) {

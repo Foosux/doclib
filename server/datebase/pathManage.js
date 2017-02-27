@@ -16,9 +16,19 @@ var PathManage = {
     })
   },
   fetch: function (callback) {
-    PathModel.fetch(function(err,data) {
+    PathModel.fetch(function(err, data) {
       if (err) console.log(err)
       callback(data)
+    })
+  },
+  fetchById: function (id, callback) {
+    PathModel.fetchById(id, function(err, data) {
+      if (err) console.log(err)
+      callback({
+        code: 1,
+        data: data || [],
+        msg: '查询成功'
+      })
     })
   },
   remove: function (id, callback) {
