@@ -356,6 +356,29 @@ aside.mdNav dt:after {
 .adminWrap table .tr-lv3 {
   background: #f5f5f5;
 }
+.adminWrap #tagsWrap .tag {
+  width: 80px;
+  position: relative;
+  margin-right: 10px;
+  display: inline-block;
+}
+.adminWrap #tagsWrap .tag i {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #f05023;
+  line-height: 15px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+.adminWrap #tagsWrap .tag:hover i {
+  display: block;
+}
 .contWrap {
   padding: 10px;
 }
@@ -381,7 +404,6 @@ a.G-btn-a {
   font: 12px/35px '';
   height: 35px;
   text-align: center;
-  min-width: 50px;
   color: #fff;
   border: 0;
   border-radius: 5px;

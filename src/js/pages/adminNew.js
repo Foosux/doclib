@@ -31,4 +31,13 @@ $(function(){
       }
     })
   }
+  // 新增Tag
+  $('.actAddTag').on('click',function(){
+    var tagHtml = '<span class="tag"><input type="text" name="tags" required/><i>x</i></tag>'
+    $('#tagsWrap').append(tagHtml)
+    $('#tagsWrap .tag:last-child input').focus()
+  })
+  $('#tagsWrap').on('click','i',function(){
+    $(this).parents('.tag').remove()
+  })
 })

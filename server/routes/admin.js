@@ -2,9 +2,12 @@ var express = require('express')
 var path = require('path')
 var router = express.Router()
 var multer  = require('multer')
+var creatFile = require(path.join(path.resolve(),'./lib/creatFile'))
 var upload = multer({ dest: path.join(path.resolve(),'./dest/images/avatar/') })
 var userManage = require('../datebase/userManage')
 var pathManage = require('../datebase/pathManage')
+var docsManage = require('../datebase/docsManage')
+
 
 router.route('/')
   .get(function(req, res, next) {
@@ -109,7 +112,7 @@ router.route('/path/list')
   // 删除分类
   .delete(function (req, res, next) {
     var id = req.query.id
-    if (id='undefined') {
+    if (id!='undefined') {
       pathManage.remove(id, function (resData) {
         res.json(resData)
       })
@@ -121,4 +124,18 @@ router.route('/path/list')
     }
   })
 
+// 发布文章
+router.route('/new/creat')
+  .post(function (req, res, next) {
+    // 整理数据
+    req.body.author = global._GLOBAL_DATA.role
+    req.body.avatar = global._GLOBAL_DATA.avatar
+
+    docsManage.creat(req.body, function(resData){
+      if (resData.code===1) {
+        creatFile(req.body)
+        res.redirect('/admin/home')
+      }
+    })
+  })
 module.exports = router

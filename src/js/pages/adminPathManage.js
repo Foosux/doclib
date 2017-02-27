@@ -13,7 +13,7 @@ $(function(){
     var itemNode = $('#item-' + id)
     var childNode = $('.parent-' + id)
     // 打印节点及数据
-    console.log(id,itemNode,childNode)
+    // console.log(id,itemNode,childNode)
 
     // 异步发送删除数据的请求
     $.ajax({

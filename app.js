@@ -57,9 +57,9 @@ app.use('/md', markdown)
 app.use('/admin', admin)
 
 // 404页
-app.use(function(req, res, next) {
-  res.redirect('/404')
-})
+// app.use(function(req, res, next) {
+  // res.redirect('/404')
+// })
 
 // 全局error
 app.use(function(err, req, res, next) {
