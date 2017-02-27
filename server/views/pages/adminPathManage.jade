@@ -8,6 +8,7 @@ block content
     section
       for item in data.lv1
         - var root = item.pathName
+        - var grandId = item._id
         table(id='item-#{item._id}')
           caption #{item.pathName}
             a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除该分类
@@ -39,12 +40,12 @@ block content
                       td #{item.pathName}
                       td #{moment(item.updateAt).format('YYYY-MM-DD')}
                       td
-                        a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&level=3') 新增子分类
+                        a.actAddSubItem(href='javascript:;', actdata='parentId=#{item._id}&parentName=#{item.pathName}&grandId=#{grandId}&level=3') 新增子分类
                         a.actDelItem(href='javascript:;', data-id='#{item._id}') 删除
                     - if (data.maxDeep >= 3)
                       - each item in data.lv3
                         - if (item.parentName == lv2Name)
-                          tr.tr-lv3(id='item-#{item._id}')
+                          tr.tr-lv3(id='item-#{item._id}', class='parent-#{item.parentId}')
                             td #{item.level}
                             td #{root+'/'+item.parentName+'/'}
                             td #{item.pathName}
@@ -88,6 +89,7 @@ block content
             input.G-box-col(type='text', name='pathName', placeholder='请填写子类名', required)
         .btns
           input.parentId(type='hidden', name='parentId')
+          input.grandId(type='hidden', name='grandId')
           input.parentName.G-box-col(type='hidden', name='parentName')
           input.level.G-box-col(type='hidden', name='level',value='')
           button.G-btn-a 立即提交

@@ -10,26 +10,20 @@ var PathSchemas = new mongoose.Schema({
   },
   level: {
     type: String,
-    // default: 1,
     required: true
   },
-  parentId: {
-    type: String,
-    // default: 1,
-    required: true
-  },
-  parentName: {
-    type: String,
-    default: 1,
-    required: true
-  },
-  createAt: {
-    type: Date,
-    default: Date.now()
-  },
-  updateAt: {
-    type: Date,
-    default: Date.now()
+  parentId: String,
+  parentName: String,
+  grandId: String,
+  meta: {
+    createAt: {
+      type: Date,
+      default: Date.now()
+    },
+    updateAt: {
+      type: Date,
+      default: Date.now()
+    }
   }
 })
 PathSchemas.pre('save',function(next) {
@@ -45,7 +39,7 @@ PathSchemas.statics = {
   fetch: function (cb) {
     return this
       .find()
-      .sort({updateAt:-1})
+      .sort({'meta.updateAt':-1})
       .exec(cb)
   }
 }

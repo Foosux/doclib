@@ -6,7 +6,8 @@ var PathManage = {
       pathName: data.pathName || 'root',
       level: data.level || 0,
       parentId: data.parentId || 0,
-      parentName: data.parentName || '/'
+      parentName: data.parentName || '/',
+      grandId: data.grandId || 0
     })
 
     _user.save(function(err, _user) {
@@ -21,7 +22,13 @@ var PathManage = {
     })
   },
   remove: function (id, callback) {
-    PathModel.remove({_id: id}, function(err, data) {
+    PathModel.remove({
+      $or: [
+        {_id: id},
+        {parentId: id},
+        {grandId: id}
+      ]
+    }, function(err, data) {
       if (err) return console.log(err)
       callback({
         code: 1,

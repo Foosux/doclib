@@ -91,6 +91,7 @@ router.route('/path/creat')
 router.route('/path')
   .delete(function (req, res, next) {
     var id = req.query.id
+    // console.log(id)
     if (id) {
       pathManage.remove(id, function (resData) {
         res.json(resData)

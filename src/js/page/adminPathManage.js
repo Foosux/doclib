@@ -11,8 +11,9 @@ $(function(){
     // 获取节点及ID
     var id = $(e.target).data('id')
     var itemNode = $('#item-' + id)
+    var childNode = $('.parent-' + id)
     // 打印节点及数据
-    // console.log(id,itemNode)
+    console.log(id,itemNode,childNode)
 
     // 异步发送删除数据的请求
     $.ajax({
@@ -24,6 +25,7 @@ $(function(){
         if (itemNode.length > 0) {
           alert('删除成功')
           itemNode.remove()
+          childNode.remove()
         }
       } else {
         alert(res.msg)
@@ -37,7 +39,8 @@ $(function(){
     $('.parentId').val(actData.parentId)
     $('.parentName').val(actData.parentName).text(actData.parentName+'/')
     $('.level').val(actData.level).text(actData.level)
-    $('.addSubPathLayer').parents('.G-layerWrap').show();
+    $('.grandId').val(actData.grandId)
+    $('.addSubPathLayer').parents('.G-layerWrap').show()
   })
 
 })
