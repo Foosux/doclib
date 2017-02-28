@@ -15,6 +15,7 @@ var PathSchemas = new mongoose.Schema({
   parentId: String,
   parentName: String,
   grandId: String,
+  grandName: String,
   meta: {
     createAt: {
       type: Date,
@@ -26,10 +27,10 @@ var PathSchemas = new mongoose.Schema({
     }
   }
 })
-PathSchemas.pre('save',function(next) {
+PathSchemas.pre('save', function (next) {
   if (this.isNew) {
     this.createAt = this.updateAt = Date.now()
-  }else{
+  } else {
     this.updateAt = Date.now()
   }
   next() // 保持流程
@@ -39,10 +40,16 @@ PathSchemas.statics = {
   fetch: function (cb) {
     return this
       .find()
-      .sort({'meta.updateAt':-1})
+      .sort({'meta.updateAt': -1})
       .exec(cb)
   },
   fetchById: function (id, cb) {
+    return this
+      .find({_id: id})
+      .sort({'meta.updateAt': -1})
+      .exec(cb)
+  },
+  fetchByIdComb: function (id, cb) {
     return this
       .find({
         $or: [
@@ -50,7 +57,7 @@ PathSchemas.statics = {
           {parentId: id}
         ]
       })
-      .sort({'meta.updateAt':-1})
+      .sort({'meta.updateAt': -1})
       .exec(cb)
   }
 }

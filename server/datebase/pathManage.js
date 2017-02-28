@@ -7,10 +7,11 @@ var PathManage = {
       level: data.level || 0,
       parentId: data.parentId || 0,
       parentName: data.parentName || '/',
-      grandId: data.grandId || 0
+      grandId: data.grandId || 0,
+      grandName: data.grandName || '/'
     })
 
-    _user.save(function(err, path) {
+    _user.save(function (err, path) {
       if (err) {
         console.log(err)
         callback({
@@ -25,13 +26,23 @@ var PathManage = {
     })
   },
   fetch: function (callback) {
-    PathModel.fetch(function(err, data) {
+    PathModel.fetch(function (err, data) {
       if (err) console.log(err)
       callback(data)
     })
   },
   fetchById: function (id, callback) {
-    PathModel.fetchById(id, function(err, data) {
+    PathModel.fetchById(id, function (err, data) {
+      if (err) console.log(err)
+      callback({
+        code: 1,
+        data: data || [],
+        msg: '查询成功'
+      })
+    })
+  },
+  fetchByIdComb: function (id, callback) {
+    PathModel.fetchByIdComb(id, function (err, data) {
       if (err) console.log(err)
       callback({
         code: 1,
@@ -47,7 +58,7 @@ var PathManage = {
         {parentId: id},
         {grandId: id}
       ]
-    }, function(err, data) {
+    }, function (err, data) {
       if (err) return console.log(err)
       callback({
         code: 1,
@@ -55,16 +66,16 @@ var PathManage = {
       })
     })
   },
-  format: function(data) {
+  format: function (data) {
     var res = {
-      maxDeep : 0
+      maxDeep: 0
     }
-    data.forEach(function(item,i){
-      if (!res['lv'+item.level]) {
-        res['lv'+item.level]=[]
+    data.forEach(function (item, i) {
+      if (!res['lv' + item.level]) {
+        res['lv' + item.level] = []
         res.maxDeep++
       }
-      res['lv'+item.level].push(data[i])
+      res['lv' + item.level].push(data[i])
     })
     return res
   }
