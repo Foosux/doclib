@@ -36,10 +36,12 @@ $(function(){
   $(".actAddSubItem").click(function(e){
     var target = $(e.currentTarget);
     var actData = $.queryToJson(target.attr("actdata"));
+    console.log(actData)
     $('.parentId').val(actData.parentId)
     $('.parentName').val(actData.parentName).text(actData.parentName+'/')
     $('.level').val(actData.level).text(actData.level)
     $('.grandId').val(actData.grandId)
+    $('.grandName').val(actData.grandName)
     $('.addSubPathLayer').parents('.G-layerWrap').show()
   })
 

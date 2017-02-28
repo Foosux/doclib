@@ -3,6 +3,7 @@ var path = require('path')
 var router = express.Router()
 var multer  = require('multer')
 var creatFile = require(path.join(path.resolve(),'./lib/creatFile'))
+var dirManage = require(path.join(path.resolve(),'./lib/dirManage'))
 var upload = multer({ dest: path.join(path.resolve(),'./dest/images/avatar/') })
 var userManage = require('../datebase/userManage')
 var pathManage = require('../datebase/pathManage')
@@ -87,9 +88,13 @@ router.route('/user')
 router.route('/path/creat')
   .post(function (req, res, next) {
     var reqBody = req.body || {}
-    pathManage.creat(reqBody, function(msg){
-      if (msg) {
+    pathManage.creat(reqBody, function (reqData) {
+      // console.log(reqData)
+      if (reqData.code === 1) {
+        dirManage.mkdir(path.join(global._CONF.docsRoot, reqBody.grandName, reqBody.parentName, reqBody.pathName))
         res.redirect('/admin/path')
+      } else {
+        console.log(reqData.msg)
       }
     })
   })

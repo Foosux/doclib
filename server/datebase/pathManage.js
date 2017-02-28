@@ -10,9 +10,18 @@ var PathManage = {
       grandId: data.grandId || 0
     })
 
-    _user.save(function(err, _user) {
-      if (err) return console.log(err)
-      callback(true)
+    _user.save(function(err, path) {
+      if (err) {
+        console.log(err)
+        callback({
+          code: 0,
+          msg: '创建失败'
+        })
+      }
+      callback({
+        code: 1,
+        msg: '创建成功'
+      })
     })
   },
   fetch: function (callback) {

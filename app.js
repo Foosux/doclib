@@ -1,9 +1,9 @@
 var express = require('express')
 var app = express()
 var path = require('path')
-var fs = require('fs')
+// var fs = require('fs')
 var logger = require('morgan')
-var bodyParser= require('body-parser')
+var bodyParser = require('body-parser')
 var connectDB = require('./lib/connectDB')
 app.locals.moment = require('moment')
 app.locals.marked = require('marked')
@@ -12,7 +12,7 @@ app.locals.marked = require('marked')
 connectDB('mongodb://127.0.0.1:12345/doclib')
 // 设置静态文件路径、模板引擎、CSS引擎、静态资源托管、请求log输出
 app.set('views', path.join(__dirname, 'server/views/pages'))
-app.set('view engine','jade')
+app.set('view engine', 'jade')
 app.use(logger('dev'))        // 日志打印到控制台
 app.use(require('stylus').middleware({
   src: path.join(__dirname, 'src/stylesheets'),
@@ -20,15 +20,18 @@ app.use(require('stylus').middleware({
 }))
 app.use(express.static(path.join(__dirname, 'dest')))
 app.use(express.static(path.join(__dirname, 'src')))
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // 全局变量
 global._GLOBAL_DATA = {
   role: '聪明的小核桃',
   avatar: '/images/avatar/def.jpg'
 }
+global._CONF = {
+  docsRoot: path.join(path.resolve(), 'docs')
+}
 
-var readFiles = require('./lib/files')
+// var readFiles = require('./lib/files')
 /**
  * [filesInfo description]
  * @type {path [string]} 读取哪个路径下的文件
@@ -42,7 +45,6 @@ var readFiles = require('./lib/files')
 // )
 // 读取文件返回值
 // console.log(filesInfo)
-
 
 // 路由
 var index = require('./server/routes/index')
@@ -62,7 +64,7 @@ app.use('/admin', admin)
 // })
 
 // 全局error
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}

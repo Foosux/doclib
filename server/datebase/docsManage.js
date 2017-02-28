@@ -14,7 +14,7 @@ var DocsManage = {
       }
     })
 
-    _doc.save(function(err, _user) {
+    _doc.save(function(err, doc) {
       if (err) {
         console.log(err)
         callback({
