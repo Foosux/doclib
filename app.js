@@ -31,18 +31,12 @@ global._CONF = {
   docsRoot: path.join(path.resolve(), 'docs')
 }
 
-// var readFiles = require('./lib/files')
-/**
- * [filesInfo description]
- * @type {path [string]} 读取哪个路径下的文件
- * @type {path [string]} 生成的侧边栏信息保存在哪
- * @type {name [string]} 保存的文件名
- */
-// var filesInfo = readFiles(
-//   path.join(__dirname, 'docs'),
-//   path.join(__dirname, 'server/views/filesroot'),
-//   'nodejs'
-// )
+var readFilesCreatMenu = require('./lib/readFilesCreatMenu')
+var filesInfo = readFilesCreatMenu.creat(
+  path.join(__dirname, 'docs'),
+  path.join(__dirname, 'server/views/filesroot'),
+  'nodejs.jade'
+)
 // 读取文件返回值
 // console.log(filesInfo)
 

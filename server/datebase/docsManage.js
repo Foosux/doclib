@@ -19,11 +19,13 @@ var DocsManage = {
         console.log(err)
         callback({
           code: 0,
+          data: [],
           msg: '创建失败'
         })
       }
       callback({
         code: 1,
+        data: doc,
         msg: '创建成功'
       })
     })

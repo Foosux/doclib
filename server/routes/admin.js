@@ -3,7 +3,7 @@ var path = require('path')
 var router = express.Router()
 var multer = require('multer')
 var upload = multer({dest: path.join(path.resolve(), './dest/images/avatar/')})
-var creatFile = require(path.join(path.resolve(), './lib/creatFile'))
+var fileManage = require(path.join(path.resolve(), './lib/fileManage'))
 var dirManage = require(path.join(path.resolve(), './lib/dirManage'))
 var userManage = require('../datebase/userManage')
 var pathManage = require('../datebase/pathManage')
@@ -143,11 +143,18 @@ router.route('/new/creat')
     // 整理数据
     req.body.author = global._GLOBAL_DATA.role
     req.body.avatar = global._GLOBAL_DATA.avatar
+    // console.log(req.body)
 
     docsManage.creat(req.body, function (resData) {
       if (resData.code === 1) {
-        creatFile(req.body)
-        res.redirect('/admin/home')
+        // console.log(resData)
+        var filePath = global._CONF.docsRoot
+        resData.data.paths.forEach(function (item) {
+          filePath = path.join(filePath, item)
+        })
+        filePath = path.join(filePath, (resData.data.title + '.md'))
+        fileManage.creatFile(filePath, resData.data.article)
+        // res.redirect('/admin/home')
       }
     })
   })

@@ -11,16 +11,18 @@ var PathManage = {
       grandName: data.grandName || '/'
     })
 
-    _user.save(function (err, path) {
+    _user.save(function (err, pathInfo) {
       if (err) {
         console.log(err)
         callback({
           code: 0,
+          data: [],
           msg: '创建失败'
         })
       }
       callback({
         code: 1,
+        data: pathInfo,
         msg: '创建成功'
       })
     })
